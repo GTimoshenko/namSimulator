@@ -11,12 +11,22 @@
 #include <vector>
 using namespace std;
 
+/*Структура данных table хранит в себе :
+* string replacingSymbol - символ, который необходимо заменить.
+* string pastingSymbol - символ, на который необходимо заменить.
+* bool isEndPoint - является ли данное состояние конечным(1, если конечное).
+*/
 typedef struct table {
 	string replacingSymbol;
 	string pastingSymbol;
 	bool isEndPoint;
 }table;
 
+/*Функция readInput получает на вход:
+* string fileName - название файла с состояниями НАМ.
+* Заполняет вектор из файла.
+* Возвращает заполненный вектор.
+*/
 vector <table> readIpnut(string fileName) {
 	ifstream fin(fileName);
 	int numOfOperations;
@@ -32,7 +42,11 @@ vector <table> readIpnut(string fileName) {
 
 	return inputTable;
 }
-
+/*Функция readConsole получает на вход:
+* string a - обрабатываемую строку.
+* Проверяет, не содержит ли входная строка неподходящих символов.
+* Возвращает inpusIsCorrect - переменную, которая хранит 1, если ввод корректен и 0 - если ввод неверный.
+*/
 bool readConsole(string a) {
 	int inputIsCorrect = 1;
 
@@ -49,7 +63,12 @@ bool readConsole(string a) {
 
 	return inputIsCorrect;
 }
-
+/*Функция processSimulator получает на вход:
+* vector<table>& inputTable - адрес вектора, в котором хранится таблица с состояниями.
+* string& inputString - адрес входной строки.
+* int& endPointOccured - адрес переменной, которая принимает значение 1, если встречалось конечное состояние, 0 - если не встречалось.
+* Ничего не возвращает, симулирует работу НАМ и каждый раз выводит шаг обработки строки.
+*/
 void processSimulator(vector<table>& inputTable, string& inputString, int& endPointOccured) {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
